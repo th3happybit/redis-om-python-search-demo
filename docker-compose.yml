@@ -9,3 +9,20 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
+    networks:
+      - backend
+
+  app:
+    container_name: redis_om_python_demo_app
+    image: "redis-om/redis_om_python_demo:1.0"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - backend
+    environment:
+      - REDIS_OM_URL=redis://redis:6379
+
+networks:
+  backend:

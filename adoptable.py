@@ -1,5 +1,8 @@
 from typing import Text
 from redis_om import (Field, HashModel)
+from redis_om import get_redis_connection
+
+redis = get_redis_connection()
 
 class Adoptable(HashModel):
     name: str = Field(index=True)
@@ -11,3 +14,6 @@ class Adoptable(HashModel):
     children: str = Field(index=True)
     other_animals: str = Field(index=True)
     description: str = Field(index=True, full_text_search=True)
+
+    class Meta:
+        database = redis

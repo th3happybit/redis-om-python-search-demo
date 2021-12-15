@@ -1,7 +1,7 @@
 import csv
 
 from adoptable import Adoptable
-from redis_om import Migrator
+from redis_om import Migrator, get_redis_connection
 
 with open('animal_data.csv') as csv_file:
     animal_reader = csv.DictReader(csv_file)
